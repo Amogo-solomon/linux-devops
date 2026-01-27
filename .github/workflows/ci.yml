@@ -15,9 +15,9 @@ jobs:
 
       - name: Run shell script
         env:
-          APP_NEW: production
+          APP_NEW: ${{ secrets.DEPLOY_ENV }}
         run: |
-          echo "Environment is $APP_ENV"
+          echo "Deploying to $APP_ENV environment"
           chmod +x hello.sh
           ./hello.sh
 
