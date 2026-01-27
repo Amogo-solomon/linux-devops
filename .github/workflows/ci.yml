@@ -14,7 +14,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run shell script
+        env:
+          APP_NEW: production
         run: |
+          echo "Environment is $APP_ENV"
           chmod +x hello.sh
           ./hello.sh
 
