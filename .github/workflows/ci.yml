@@ -1,4 +1,4 @@
-name: Linux CI Pipeline
+name: Linux CI/CD pipeline
 
 on:
   push:
@@ -13,11 +13,20 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Run shell script
-        env:
-          APP_NEW: ${{ secrets.DEPLOY_ENV }}
+      - name: Build step
         run: |
-          echo "Deploying to $APP_ENV environment"
+          echo "Building application..."
           chmod +x hello.sh
           ./hello.sh
 
+    deploy:
+      needs: build
+      runs-on: ubuntu-latest
+
+      steps:
+        - name: Deploy step
+          env:
+            DEPLOY_ENV: ${{ secrets.DEPLOY_ENV }}
+          run: |
+            echo "Deploying to $DEPLOY_ENV environment"
+            echo "Deployment successful"
