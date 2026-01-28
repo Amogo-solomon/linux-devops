@@ -19,13 +19,13 @@ jobs:
           chmod +x hello.sh
           ./hello.sh
 
-   deploy:
-     needs: build
-     runs-on: ubuntu-latest
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
 
-     steps:
-       - name: Deploy step
-         env:
+    steps:
+      - name: Deploy step
+        env:
            DEPLOY_ENV: ${{ secrets.DEPLOY_ENV }}
          run: |
             echo "Deploying to $DEPLOY_ENV environment"
