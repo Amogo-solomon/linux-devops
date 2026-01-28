@@ -27,6 +27,6 @@ jobs:
       - name: Deploy step
         env:
            DEPLOY_ENV: ${{ secrets.DEPLOY_ENV }}
-         run: |
+        run: |
             echo "Deploying to $DEPLOY_ENV environment"
             echo "Deployment successful"
